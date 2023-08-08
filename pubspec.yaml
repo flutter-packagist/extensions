@@ -1,0 +1,22 @@
+name: extensions
+description: A new Flutter project.
+version: 1.0.0
+homepage: https://github.com/flutter-packagist/extensions
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  permission_handler: 10.4.3
+  route:
+    path: ../route
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
