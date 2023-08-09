@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  device_info_plus: 9.0.3
+  get: 4.6.5
   permission_handler: 10.4.3
   route:
     path: ../route
