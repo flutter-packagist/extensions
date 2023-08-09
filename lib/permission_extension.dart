@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:route/route.dart';
 
+/// 权限扩展：
+/// 1. 申请权限被永久拒绝后统一处理
+/// 2. 适配Android 13权限变更（多媒体资源访问）
 extension PermissionActionHandle on Permission {
   Future<PermissionStatus> use({
     Function(PermissionStatus)? onAccept,
