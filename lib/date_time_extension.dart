@@ -2,6 +2,11 @@ import 'package:intl/intl.dart';
 
 /// 日期扩展
 extension DateTimeExtension on DateTime {
+  /// timestamp seconds
+  int get timeStamp {
+    return (millisecondsSinceEpoch ~/ 1000).toInt();
+  }
+
   /// 是否为今天
   bool get isToday {
     final nowDate = DateTime.now();
@@ -27,13 +32,5 @@ extension DateTimeExtension on DateTime {
   /// 获取指定格式的当前时间
   String format([String format = "yyyy-MM-dd HH:mm:ss"]) {
     return DateFormat(format).format(this);
-  }
-
-  /// return current time in milliseconds
-  int currentMillisecondsTimeStamp() => DateTime.now().millisecondsSinceEpoch;
-
-  /// return current timestamp
-  int currentTimeStamp() {
-    return (DateTime.now().millisecondsSinceEpoch ~/ 1000).toInt();
   }
 }

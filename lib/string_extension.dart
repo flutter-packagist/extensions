@@ -14,7 +14,8 @@ extension StringExtension on String? {
   }
 
   /// Check null string, return given value if null
-  String validate({String value = ''}) => isNullOrEmpty ? value : this!;
+  String validate([String defaultValue = '']) =>
+      isNullOrEmpty ? defaultValue : this!;
 
   /// Return int value of given string
   int toInt({int defaultValue = 0}) {
@@ -131,7 +132,7 @@ extension StringExtension on String? {
       Patterns.hasMatch(this, Patterns.emailEnhanced);
 
   /// Check phone validation
-  bool validatePhone() => Patterns.hasMatch(this, Patterns.phone);
+  bool validatePhoneCN() => Patterns.hasMatch(this, Patterns.phoneCN);
 
   /// Check URL validation
   bool validateURL() => Patterns.hasMatch(this, Patterns.url);
@@ -178,7 +179,7 @@ class Patterns {
   static String url =
       r'^((?:.|\n)*?)((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)([-A-Z0-9.]+)(/[-A-Z0-9+&@#/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#/%=~_|!:‌​,.;]*)?)';
 
-  static String phone = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+  static String phoneCN = r'(^(?:[+0]9)?[0-9]{10,12}$)';
 
   static String email =
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
