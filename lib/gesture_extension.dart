@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 
-extension FunctionExt on Function {
+extension FunctionExtension on Function {
   /// 事件回调防抖
   VoidCallback debounce({int timeout = 500}) {
     return FunctionProxy(this, timeout: timeout).debounce;

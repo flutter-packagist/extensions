@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 
 /// 日期扩展
-extension DateTimeExt on DateTime {
+extension DateTimeExtension on DateTime {
   /// 是否为今天
   bool get isToday {
     final nowDate = DateTime.now();
