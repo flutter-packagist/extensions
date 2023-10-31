@@ -10,12 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  device_info_plus: 9.0.3
-  get: 4.6.5
-  intl: 0.18.1
-  permission_handler: 10.4.3
-  route:
-    path: ../route
+  device_info_plus: ^9.1.0
+  get: ^4.6.6
+  intl: ^0.18.1
+  permission_handler: ^10.4.3
 
 dev_dependencies:
   flutter_test:
