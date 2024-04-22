@@ -23,8 +23,22 @@ class FunctionProxy {
 
   FunctionProxy(this.target, {this.timeout = 0});
 
-  void debounce() {
-    String key = hashCode.toString();
+  factory FunctionProxy.debounce(
+    Function target, {
+    String? key,
+    int timeout = 500,
+  }) =>
+      FunctionProxy(target, timeout: timeout)..debounce(uniqueKey: key);
+
+  factory FunctionProxy.throttle(
+    Function target, {
+    String? key,
+    int timeout = 500,
+  }) =>
+      FunctionProxy(target, timeout: timeout)..throttle(uniqueKey: key);
+
+  void debounce({String? uniqueKey}) {
+    String key = uniqueKey ?? hashCode.toString();
     Timer? timer = _funcDebounce[key];
     timer?.cancel();
     timer = Timer(Duration(milliseconds: timeout), () {
@@ -35,8 +49,8 @@ class FunctionProxy {
     _funcDebounce[key] = timer;
   }
 
-  void throttle() async {
-    String key = hashCode.toString();
+  void throttle({String? uniqueKey}) async {
+    String key = uniqueKey ?? hashCode.toString();
     bool enable = _funcThrottle[key] ?? true;
     if (enable) {
       _funcThrottle[key] = false;

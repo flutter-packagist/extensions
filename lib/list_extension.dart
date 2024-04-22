@@ -48,4 +48,9 @@ extension ListExtension<T> on List<T>? {
     this!.insert(this!.length, element);
     return true;
   }
+
+  List<T> copy() {
+    if (isNullOrEmpty) return [];
+    return List<T>.generate(this!.length, (i) => this![i]);
+  }
 }

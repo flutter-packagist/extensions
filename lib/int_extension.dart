@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:extensions/string_extension.dart';
 
 extension IntExtension on int? {
@@ -9,5 +11,10 @@ extension IntExtension on int? {
   /// for ex. add comma in price
   String thousandsSeparator({String separator = ','}) {
     return positive.toString().thousandsSeparator(separator: separator);
+  }
+
+  int get random {
+    if (this == null) return 0;
+    return Random().nextInt(this!);
   }
 }
