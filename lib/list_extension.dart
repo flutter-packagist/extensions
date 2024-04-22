@@ -29,7 +29,7 @@ extension ListExtension<T> on List<T>? {
 
   /// 插入指定元素
   bool insertSafe(int index, T element) {
-    if (isNullOrEmpty) return false;
+    if (isNull) return false;
     if (index < 0 || index >= this!.length) return false;
     this!.insert(index, element);
     return true;
@@ -37,14 +37,14 @@ extension ListExtension<T> on List<T>? {
 
   /// 插入指定元素到列表头部
   bool insertHead(T element) {
-    if (isNullOrEmpty) return false;
+    if (isNull) return false;
     this!.insert(0, element);
     return true;
   }
 
   /// 插入指定元素到列表尾部
   bool insertTail(T element) {
-    if (isNullOrEmpty) return false;
+    if (isNull) return false;
     this!.insert(this!.length, element);
     return true;
   }
