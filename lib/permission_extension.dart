@@ -10,6 +10,8 @@ extension PermissionActionHandle on Permission {
   Future<PermissionStatus> use({
     Function(PermissionStatus)? onAccept,
     Function(PermissionStatus)? onDenied,
+    bool showSettingDialog = true,
+    String? permissionTitle,
   }) async {
     Permission permission = await _handleMediaPermission();
     final PermissionStatus status = await permission.request();
@@ -17,8 +19,9 @@ extension PermissionActionHandle on Permission {
       onAccept?.call(status);
     } else if (onDenied != null) {
       onDenied.call(status);
-    } else if (status.isPermanentlyDenied) {
-      PermissionContext.showSettingDialog();
+    } else if (status.isPermanentlyDenied && showSettingDialog) {
+      String title = permissionTitle ?? permission._handleSettingTitle();
+      PermissionContext.showSettingDialog(text: title);
     }
     return status;
   }
@@ -44,30 +47,61 @@ extension PermissionActionHandle on Permission {
     }
     return permission;
   }
+
+  String _handleSettingTitle() {
+    Map<Permission, String> permissionMap = PermissionContext._permissionMap ??
+        {
+          Permission.camera: '相機',
+          Permission.contacts: '聯絡人',
+          Permission.location: '位置',
+          Permission.locationAlways: '位置',
+          Permission.locationWhenInUse: '位置',
+          Permission.microphone: '麥克風',
+          Permission.phone: '電話',
+          Permission.photos: '相片和影片',
+          Permission.photosAddOnly: '',
+          Permission.sensors: '人體感測器',
+          Permission.sms: '簡訊',
+          Permission.speech: '錄音',
+          Permission.storage: '儲存空間',
+          Permission.ignoreBatteryOptimizations: '電池優化',
+          Permission.notification: '通知',
+          Permission.bluetooth: '藍牙',
+          Permission.videos: '相片和影片',
+          Permission.audio: '音樂和音訊',
+          Permission.calendarWriteOnly: '日曆',
+          Permission.calendarFullAccess: '日曆',
+        };
+    print("permissionMap: $this ==> ${permissionMap[this]}");
+    return permissionMap[this] ?? '';
+  }
 }
 
 class PermissionContext {
   static BuildContext? _context;
   static String? _title;
-  static String? _description;
+  static String Function(String text)? _description;
   static String? _cancelText;
   static String? _confirmText;
+  static Map<Permission, String>? _permissionMap;
 
-  static void initContext(
+  static void init(
     BuildContext context, {
     String? title,
-    String? description,
+    String Function(String text)? description,
     String? cancelText,
     String? confirmText,
+    Map<Permission, String>? permissionMap,
   }) {
     _context = context;
     _title = title;
     _description = description;
     _cancelText = cancelText;
     _confirmText = confirmText;
+    _permissionMap = permissionMap;
   }
 
-  static Future showSettingDialog() {
+  static Future showSettingDialog({String text = ""}) {
     assert(_context != null, 'Please call initContext() method first.');
     return showDialog(
       context: _context!,
@@ -80,7 +114,7 @@ class PermissionContext {
           children: [
             const SizedBox(height: 20),
             Text(
-              _title ?? '提示',
+              _title ?? '授權失敗',
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: 18,
@@ -89,11 +123,12 @@ class PermissionContext {
             ),
             const SizedBox(height: 12),
             Text(
-              _description ?? '请在设置中打开权限',
+              _description?.call(text) ?? '請前往設置中心開啟$text權限',
               style: const TextStyle(
                 color: Colors.black87,
                 fontSize: 16,
               ),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
             Container(height: 0.5, width: 300, color: Colors.black12),
