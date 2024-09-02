@@ -155,7 +155,10 @@ class PermissionContext {
                 Container(height: 50, width: 0.5, color: Colors.black12),
                 Expanded(
                   child: TextButton(
-                    onPressed: () => openAppSettings(),
+                    onPressed: () {
+                      Navigator.of(_context!).pop();
+                      openAppSettings();
+                    },
                     style: ButtonStyle(
                       overlayColor:
                           MaterialStateProperty.all(Colors.transparent),
