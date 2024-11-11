@@ -1,5 +1,5 @@
-import 'package:extensions/extensions.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:packagist_extensions/extensions.dart';
 
 enum Price { price1, price2 }
 

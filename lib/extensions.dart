@@ -1,3 +1,5 @@
+library packagist_extensions;
+
 export 'cache_extension.dart';
 export 'date_time_extension.dart';
 export 'double_extension.dart';

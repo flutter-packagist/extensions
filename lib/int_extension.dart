@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:extensions/string_extension.dart';
+import 'package:packagist_extensions/extensions.dart';
 
 extension IntExtension on int? {
   int get positive {
