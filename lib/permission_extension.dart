@@ -140,8 +140,7 @@ class PermissionContext {
                   child: TextButton(
                     onPressed: () => Navigator.of(_context!).pop(),
                     style: ButtonStyle(
-                      overlayColor:
-                          MaterialStateProperty.all(Colors.transparent),
+                      overlayColor: WidgetStateProperty.all(Colors.transparent),
                     ),
                     child: Text(
                       _cancelText ?? '取消',
@@ -160,8 +159,7 @@ class PermissionContext {
                       openAppSettings();
                     },
                     style: ButtonStyle(
-                      overlayColor:
-                          MaterialStateProperty.all(Colors.transparent),
+                      overlayColor: WidgetStateProperty.all(Colors.transparent),
                     ),
                     child: Text(
                       _confirmText ?? '前往',

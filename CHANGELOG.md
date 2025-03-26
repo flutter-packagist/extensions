@@ -1,3 +1,8 @@
+## 1.1.3
+
+* feat: 依赖库升级
+* fixed: 修复`SharedPreferencesExtension`中`getStringList`返回值错误
+
 ## 1.1.2
 
 * 更新文档

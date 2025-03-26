@@ -20,7 +20,8 @@ extension SharedPreferencesExt on dynamic {
 
   List<String> getStringList({List<String>? defaultValue}) {
     List<dynamic> list = toList(_value, defaultValue: defaultValue);
-    return list is List<String> ? list : defaultValue ?? [];
+    List<String> result = list.map((e) => toString(e)).toList();
+    return result;
   }
 
   void setBool(bool value) {
